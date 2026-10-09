@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>المتجر</title>
+<title>مطعم الخديوي</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--c:#0F4C4A;--bg:#F6F8F7;--ink:#14201F;--mut:#6B7977;--card:#fff;--line:#E3E9E7}
+:root{--c:#A61E22;--bg:#F6F8F7;--ink:#14201F;--mut:#6B7977;--card:#fff;--line:#E3E9E7}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
 body{font-family:Tajawal,system-ui,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:90px}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -29,7 +29,7 @@ header h1{font-size:24px;font-weight:800}header p{opacity:.8;font-size:14px;marg
 .add:disabled{background:#bbb}
 .q{display:flex;align-items:center;gap:10px;background:#E7F0EE;border-radius:12px;padding:3px}
 .q button{width:32px;height:32px;border:0;border-radius:10px;background:var(--c);color:#fff;font-size:18px}
-#bar{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);inset-inline:16px;max-width:520px;margin:auto;background:var(--c);color:#fff;border:0;border-radius:18px;padding:16px 20px;display:none;justify-content:space-between;font-weight:700;font-size:16px;box-shadow:0 8px 24px #0F4C4A55;z-index:8;width:calc(100% - 32px)}
+#bar{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);inset-inline:16px;max-width:520px;margin:auto;background:var(--c);color:#fff;border:0;border-radius:18px;padding:16px 20px;display:none;justify-content:space-between;font-weight:700;font-size:16px;box-shadow:0 8px 24px #A61E2255;z-index:8;width:calc(100% - 32px)}
 #pop{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);inset-inline:12px;z-index:30;display:flex;flex-direction:column;gap:8px;pointer-events:none;align-items:center}
 .n{pointer-events:auto;background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 8px 30px #0003;display:flex;gap:10px;align-items:center;max-width:480px;width:100%;border-inline-start:5px solid var(--c);animation:d .35s}
 .n span{flex:1;font-weight:500}.n button{border:0;background:#eee;border-radius:50%;width:28px;height:28px;font-size:15px}
@@ -72,7 +72,7 @@ header h1{font-size:24px;font-weight:800}header p{opacity:.8;font-size:14px;marg
 </head>
 <body>
 <div id="pop"></div>
-<header><div id="logo">☕</div><div><h1 id="nm"></h1><p id="wl"></p></div><button class="trk" onclick="openTrack()">تتبع طلبي</button></header>
+<header><div id="logo">🍕</div><div><h1 id="nm"></h1><p id="wl"></p></div><button class="trk" onclick="openTrack()">تتبع طلبي</button></header>
 <div id="cats"></div>
 <main id="grid"></main>
 <button id="bar" onclick="openCart()"><span id="bc"></span><span id="bt"></span></button>
@@ -106,15 +106,11 @@ const API = 'https://script.google.com/macros/s/AKfycbwBYm6WkWQoIULIQGFhtCpTv0Bi
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ST=['تم الاستلام','قيد التحضير','في الطريق','تم التوصيل'];
-const DEMO={settings:{name:'كافيه بوشكا',welcome:'قهوة مختصة وحلويات طازجة',color:'#0F4C4A',whatsapp:'201000000000',currency:'ج.م'},
-categories:[{id:'c1',name:'مشروبات ساخنة'},{id:'c2',name:'مشروبات باردة'},{id:'c3',name:'حلويات'}],
-products:[{id:'p1',category:'c1',name:'كابتشينو',desc:'إسبريسو مع حليب مبخّر',price:65,discount:0,image:'',available:true},
-{id:'p2',category:'c2',name:'آيس لاتيه',desc:'لاتيه مثلج مع قطع ثلج',price:80,discount:15,image:'',available:true},
-{id:'p3',category:'c3',name:'تشيز كيك',desc:'قطعة تشيز كيك بصوص التوت',price:95,discount:0,image:'',available:true}],
-offers:[{id:'o1',text:'خصم 15% على المشروبات الباردة اليوم',active:true}]};
+const DEMO={"settings": {"name": "مطعم الخديوي", "welcome": "بيتزا • كريب • سندوتشات", "color": "#A61E22", "whatsapp": "201000000000", "currency": "ج.م", "logo": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20200%20200%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20rx%3D%2244%22%20fill%3D%22%23A61E22%22/%3E%3Ccircle%20cx%3D%22100%22%20cy%3D%22100%22%20r%3D%2280%22%20fill%3D%22none%22%20stroke%3D%22%23F2C14E%22%20stroke-width%3D%225%22/%3E%3Ctext%20x%3D%22100%22%20y%3D%22122%22%20font-size%3D%2296%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fff%22%20font-family%3D%22Tajawal%2CArial%2Csans-serif%22%3E%D8%AE%3C/text%3E%3Ctext%20x%3D%22100%22%20y%3D%22164%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%20fill%3D%22%23F2C14E%22%20font-family%3D%22Tajawal%2CArial%2Csans-serif%22%3E%D8%A7%D9%84%D8%AE%D8%AF%D9%8A%D9%88%D9%8A%3C/text%3E%3C/svg%3E"}, "categories": [{"id": "c1", "name": "بيتزا"}, {"id": "c2", "name": "كريب"}, {"id": "c3", "name": "سندوتشات"}], "products": [{"id": "p1", "category": "c1", "name": "مارجريتا", "desc": "موتزاريلا وصوص طماطم وريحان", "price": 110, "discount": 0, "image": "", "available": true}, {"id": "p2", "category": "c1", "name": "بيتزا خضار", "desc": "فلفل وزيتون وفطر وجبنة", "price": 125, "discount": 0, "image": "", "available": true}, {"id": "p3", "category": "c1", "name": "بيتزا بيبروني", "desc": "بيبروني وموتزاريلا", "price": 150, "discount": 10, "image": "", "available": true}, {"id": "p4", "category": "c1", "name": "بيتزا فراخ باربكيو", "desc": "فراخ مشوية بصوص الباربكيو", "price": 160, "discount": 0, "image": "", "available": true}, {"id": "p5", "category": "c1", "name": "بيتزا مشكل جبن", "desc": "أربع أنواع جبن", "price": 160, "discount": 0, "image": "", "available": true}, {"id": "p6", "category": "c1", "name": "خديوي سوبريم", "desc": "لحوم وخضار وجبن بالكامل", "price": 190, "discount": 0, "image": "", "available": true}, {"id": "p7", "category": "c2", "name": "كريب شيكولاتة", "desc": "صوص شيكولاتة غنية", "price": 70, "discount": 0, "image": "", "available": true}, {"id": "p8", "category": "c2", "name": "كريب نوتيلا موز", "desc": "نوتيلا مع شرائح الموز", "price": 90, "discount": 15, "image": "", "available": true}, {"id": "p9", "category": "c2", "name": "كريب ميكس جبن", "desc": "موتزاريلا وشيدر ورومي", "price": 90, "discount": 0, "image": "", "available": true}, {"id": "p10", "category": "c2", "name": "كريب فراخ", "desc": "فراخ وماشروم وصوص كريمي", "price": 95, "discount": 0, "image": "", "available": true}, {"id": "p11", "category": "c2", "name": "كريب لحم", "desc": "لحم مفروم وجبنة", "price": 105, "discount": 0, "image": "", "available": true}, {"id": "p12", "category": "c2", "name": "كريب خديوي مشكل", "desc": "حشو مشكل حلو أو حادق", "price": 120, "discount": 0, "image": "", "available": true}, {"id": "p13", "category": "c3", "name": "برجر لحم", "desc": "قطعة لحم وجبن وخضار وبطاطس", "price": 110, "discount": 0, "image": "", "available": true}, {"id": "p14", "category": "c3", "name": "كرسبي فراخ", "desc": "فراخ مقرمشة وصوص خاص", "price": 100, "discount": 0, "image": "", "available": true}, {"id": "p15", "category": "c3", "name": "شاورما فراخ", "desc": "شاورما فراخ بالثومية", "price": 85, "discount": 0, "image": "", "available": true}, {"id": "p16", "category": "c3", "name": "شاورما لحم", "desc": "شاورما لحم بالطحينة", "price": 105, "discount": 0, "image": "", "available": true}, {"id": "p17", "category": "c3", "name": "سندوتش سجق", "desc": "سجق بلدي وفلفل", "price": 80, "discount": 0, "image": "", "available": true}, {"id": "p18", "category": "c3", "name": "سندوتش بطاطس", "desc": "بطاطس مقرمشة وصوص", "price": 45, "discount": 0, "image": "", "available": true}], "offers": [{"id": "o1", "text": "خصم 10% على بيتزا البيبروني وكريب نوتيلا موز 15%", "active": true}, {"id": "o2", "text": "توصيل مجاني للطلبات فوق 300 ج.م", "active": true}, {"id": "o3", "text": "اطلب بيتزا كبيرة واحصل على كريب شيكولاتة هدية", "active": false}]};
 let D=DEMO,cart={},cat='all',PASS='',ROLE='owner',cur='settings',orders=[],taps=0;
 const ok=v=>v===true||String(v).toLowerCase()=='true';
 const fp=p=>Math.round(p.price*(1-(+p.discount||0)/100));
+const emo=p=>{const c=(D.categories.find(x=>x.id==p.category)||{}).name||'';return /بيتزا/.test(c)?'🍕':/كريب/.test(c)?'🥞':/سندو|برجر/.test(c)?'🥪':'🍽'};
 const money=n=>n+' '+(D.settings.currency||'ج.م');
 const toast=t=>{const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(e.t);e.t=setTimeout(()=>e.style.display='none',2200)};
 const store=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem(k));localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}};
@@ -126,13 +122,13 @@ async function load(){if(API){try{D=await get('')}catch(e){toast('تعذر تح�
  D.settings=D.settings||{};paint()}
 
 function paint(){const s=D.settings;
- document.documentElement.style.setProperty('--c',s.color||'#0F4C4A');
+ document.documentElement.style.setProperty('--c',s.color||'#A61E22');
  $('#nm').textContent=s.name||'المتجر';document.title=s.name||'المتجر';$('#wl').textContent=s.welcome||'';
- const l=$('#logo');l.innerHTML=s.logo?`<img src="${esc(s.logo)}" style="width:100%;height:100%;border-radius:16px;object-fit:cover">`:'☕';
+ const l=$('#logo');l.innerHTML=s.logo?`<img src="${esc(s.logo)}" style="width:100%;height:100%;border-radius:16px;object-fit:cover">`:'🍕';
  $('#cats').innerHTML=[{id:'all',name:'الكل'},...D.categories].map(c=>`<button class="${c.id==cat?'on':''}" onclick="cat='${esc(c.id)}';paint()">${esc(c.name)}</button>`).join('');
  const ps=D.products.filter(p=>cat=='all'||p.category==cat);
  $('#grid').innerHTML=ps.map(p=>{const a=ok(p.available),q=cart[p.id]||0,d=+p.discount>0;
-  return `<div class="p"><div class="im" style="${p.image?`background-image:url('${esc(p.image)}')`:''}">${p.image?'':'🍽'}${d?`<span class="tag">-${+p.discount}%</span>`:''}</div>
+  return `<div class="p"><div class="im" style="${p.image?`background-image:url('${esc(p.image)}')`:''}">${p.image?'':emo(p)}${d?`<span class="tag">-${+p.discount}%</span>`:''}</div>
   <div class="b"><h3>${esc(p.name)}</h3><small>${esc(p.desc)}</small>
   <div class="pr"><div><b>${fp(p)}</b>${d?`<s>${p.price}</s>`:''}</div>
   ${!a?'<small>غير متاح</small>':q?`<div class="q"><button onclick="ch('${p.id}',1)">+</button><b>${q}</b><button onclick="ch('${p.id}',-1)">−</button></div>`:`<button class="add" onclick="ch('${p.id}',1)">أضف</button>`}
@@ -184,9 +180,9 @@ async function enter(){const p=prompt('كلمة سر لوحة التحكم');if(
 function bind(n,i,k){return `data-n="${n}" data-i="${i}" data-k="${k}"`}
 function aTab(t){cur=t;let h=`<div class="at">${Object.keys(TABS).map(k=>`<button class="${k==t?'on':''}" onclick="aTab('${k}')">${TABS[k]}</button>`).join('')}<button onclick="$('#adm').classList.remove('on');load()">خروج ✕</button></div><div class="a">`;
  if(t=='settings'){const s=D.settings;
-  h+=`<div class="card"><div class="imgb">${s.logo?`<img src="${esc(s.logo)}">`:'<span style="font-size:40px">☕</span>'}<label class="b2">📷 رفع اللوجو<input type="file" accept="image/*" hidden ${bind('settings',0,'logo')}></label></div>`+
+  h+=`<div class="card"><div class="imgb">${s.logo?`<img src="${esc(s.logo)}">`:'<span style="font-size:40px">🍕</span>'}<label class="b2">📷 رفع اللوجو<input type="file" accept="image/*" hidden ${bind('settings',0,'logo')}></label></div>`+
   [['name','اسم المكان (كافيه / مطعم ...)'],['welcome','جملة تحت الاسم'],['whatsapp','رقم الواتساب بالصيغة الدولية 2010xxxxxxxx'],['currency','العملة']].map(([k,l])=>`<label class="k">${l}</label><input value="${esc(s[k])}" ${bind('settings',0,k)}>`).join('')+
-  `<label class="k">لون الموقع</label><input type="color" style="height:50px;padding:4px" value="${esc(s.color||'#0F4C4A')}" ${bind('settings',0,'color')}></div><button class="sv" onclick="saveT('settings')">💾 حفظ</button>`}
+  `<label class="k">لون الموقع</label><input type="color" style="height:50px;padding:4px" value="${esc(s.color||'#A61E22')}" ${bind('settings',0,'color')}></div><button class="sv" onclick="saveT('settings')">💾 حفظ</button>`}
  else if(t=='orders'){h+='<p id="ol">جاري التحميل...</p>';loadOrders()}
  else{h+=D[t].map((r,i)=>`<div class="card">${F[t].map(([k,l,ty])=>{const v=r[k];
   if(ty=='img')return `<div class="imgb">${v?`<img src="${esc(v)}">`:'<span style="font-size:36px">🍽</span>'}<label class="b2">📷 ${v?'تغيير':'رفع'} الصورة<input type="file" accept="image/*" hidden ${bind(t,i,k)}></label></div>`;
